@@ -16,7 +16,7 @@
         <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
 
         <li class="nav-item <?php echo(Request::segment(2)== 'dashboard' )?'active':''; ?>">
-            <a href="javascript:;" class="nav-link nav-toggle">
+            <a href="{{URL::to('admin')}}" class="nav-link nav-toggle">
                 <i class="icon-home"></i>
                 <span class="title">Dashboard</span>
                 <span class="selected"></span>
@@ -27,23 +27,26 @@
 
         <li class="nav-item <?php echo(Request::segment(2)== 'user' )?'active':''; ?> ">
             <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="icon-puzzle"></i>
+                <i class="icon-user"></i>
                 <span class="title">User</span>
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
                 <li class="nav-item  ">
-                    <a href="components_date_time_pickers.html" class="nav-link ">
-                        <span class="title">Date & Time Pickers</span>
+                    <a href="{{ Url::to('admin/module') }}" class="nav-link ">
+                        <span class="title">Module List</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="components_color_pickers.html" class="nav-link ">
-                        <span class="title">Color Pickers</span>
-                        <span class="badge badge-danger">2</span>
+                    <a href="{{ Url::to('admin/role') }}" class="nav-link ">
+                        <span class="title">Role List</span>
                     </a>
                 </li>
-
+                <li class="nav-item  ">
+                    <a href="{{ Url::to('admin/user') }}" class="nav-link ">
+                        <span class="title">User List</span>
+                    </a>
+                </li>
             </ul>
         </li>
 

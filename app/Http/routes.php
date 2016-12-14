@@ -31,6 +31,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth'], function ()
 		Route::get('admin/dashboard','DashboardController@index');
 		Route::controller('admin/general','GeneralController');
 		
+		Route::resource('admin/module','ModuleController');
+		Route::resource('admin/role','RoleController');
 
 		
    });

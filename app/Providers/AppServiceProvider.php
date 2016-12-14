@@ -23,6 +23,23 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        
+        $this->registerBindings();
+    }
+
+     public function registerBindings()
+    {
+
+        $this->app->bind(
+            \App\Repositories\Admin\Module\ModuleRepository::class,
+            \App\Repositories\Admin\Module\EloquentModuleRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Admin\Role\RoleRepository::class,
+            \App\Repositories\Admin\Role\EloquentRoleRepository::class
+        );
+
+      
     }
 }

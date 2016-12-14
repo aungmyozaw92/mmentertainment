@@ -5,7 +5,7 @@
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
                     <a href="index.html">
-                        <img src="../backend/assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+                        <img src="{{URL::asset('backend/assets/layouts/layout/img/logo.png')}}" alt="logo" class="logo-default" /> </a>
                     <div class="menu-toggler sidebar-toggler"> </div>
                 </div>
                 <!-- END LOGO -->
@@ -18,7 +18,7 @@
                         <!-- BEGIN NOTIFICATION DROPDOWN -->
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img alt="" class="img-circle" src="../backend/assets/layouts/layout/img/avatar3_small.jpg" />
+                                <img alt="" class="img-circle" src="{{URL::asset('backend/assets/layouts/layout/img/avatar3_small.jpg')}}" />
                                 <span class="username username-hide-on-mobile"> Nick </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>

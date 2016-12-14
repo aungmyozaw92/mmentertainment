@@ -19,7 +19,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <head>
         <meta charset="utf-8" />
-        <title>MM Entertainment | Dashboard</title>
+        <title>Metronic | Dashboard</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />
@@ -33,7 +33,10 @@ License: You must have a valid license purchased only from themeforest(the above
         {!! Html::style('backend/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') !!} 
         <!-- END GLOBAL MANDATORY STYLES -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
-        {!! Html::style('backend/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css') !!} 
+        {!! Html::style('backend/assets/global/plugins/datatables/datatables.min.css') !!} 
+        {!! Html::style('backend/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css') !!} 
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
         {!! Html::style('backend/assets/global/plugins/morris/morris.css') !!} 
         {!! Html::style('backend/assets/global/plugins/fullcalendar/fullcalendar.min.css') !!} 
         {!! Html::style('backend/assets/global/plugins/jqvmap/jqvmap/jqvmap.css') !!} 
@@ -47,7 +50,7 @@ License: You must have a valid license purchased only from themeforest(the above
         {!! Html::style('backend/assets/layouts/layout/css/themes/default.min.css') !!} 
         {!! Html::style('backend/assets/layouts/layout/css/custom.min.css') !!} 
         <!-- END THEME LAYOUT STYLES -->
-        <link rel="shortcut icon" href="favicon.ico" /> </head>
+        <link rel="shortcut icon" href="{{URL::asset('backend/assets/layouts/layout/img/logo.png')}}" /> </head>
     <!-- END HEAD -->
 
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
@@ -71,30 +74,6 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="page-content-wrapper">
                 <!-- BEGIN CONTENT BODY -->
                 <div class="page-content">
-                    <!-- BEGIN PAGE HEADER-->
-                    <!-- BEGIN THEME PANEL -->
-                  
-                    <!-- END THEME PANEL -->
-                    <!-- BEGIN PAGE BAR -->
-                    <div class="page-bar">
-                        <ul class="page-breadcrumb">
-                            <li>
-                                <a href="{{URL::to('admin')}}">Home</a>
-                                <i class="fa fa-circle"></i>
-                            </li>
-                            <li>
-                                <span>Dashboard</span>
-                            </li>
-                        </ul>
-                        
-                    </div>
-                    <!-- END PAGE BAR -->
-                    <!-- BEGIN PAGE TITLE-->
-                    <h3 class="page-title"> Dashboard
-                        <small>dashboard & statistics</small>
-                    </h3>
-                    <!-- END PAGE TITLE-->
-                    <!-- END PAGE HEADER-->
                
                      @yield('content')
                     <div class="clearfix"></div>
@@ -116,8 +95,8 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <!-- END FOOTER -->
         <!--[if lt IE 9]>
-<script src="../backend/assets/global/plugins/respond.min.js"></script>
-<script src="../backend/assets/global/plugins/excanvas.min.js"></script> 
+<script src="backend/assets/global/plugins/respond.min.js"></script>
+<script src="backend/assets/global/plugins/excanvas.min.js"></script> 
 <![endif]-->
         <!-- BEGIN CORE PLUGINS -->
         {!!Html::script('backend/assets/global/plugins/jquery.min.js')!!}
@@ -135,19 +114,65 @@ License: You must have a valid license purchased only from themeforest(the above
         {!!Html::script('backend/assets/global/plugins/morris/raphael-min.js')!!}
         {!!Html::script('backend/assets/global/plugins/counterup/jquery.waypoints.min.js')!!}
         {!!Html::script('backend/assets/global/plugins/counterup/jquery.counterup.min.js')!!}
-   
+
+        {!!Html::script('backend/assets/global/scripts/datatable.js')!!}
+        {!!Html::script('backend/assets/global/plugins/datatables/datatables.min.js')!!}
+        {!!Html::script('backend/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js')!!}
+
+        {!!Html::script('backend/assets/global/plugins/bootbox/bootbox.min.js')!!}
+
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         {!!Html::script('backend/assets/global/scripts/app.min.js')!!}
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         {!!Html::script('backend/assets/pages/scripts/dashboard.min.js')!!}
+        {!!Html::script('backend/assets/pages/scripts/table-datatables-managed.min.js')!!}
+        {!!Html::script('backend/assets/pages/scripts/form-samples.min.js')!!}
+        {!!Html::script('backend/assets/pages/scripts/ui-bootbox.min.js')!!}
+          
         <!-- END PAGE LEVEL SCRIPTS -->
+
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         {!!Html::script('backend/assets/layouts/layout/scripts/layout.min.js')!!}
         {!!Html::script('backend/assets/layouts/layout/scripts/demo.min.js')!!}
         {!!Html::script('backend/assets/layouts/global/scripts/quick-sidebar.min.js')!!}
         <!-- END THEME LAYOUT SCRIPTS -->
+
+        <script>
+    $(document).ready(function() {
+       
+        $('#back').click(function(){
+            window.history.back();
+        });
+
+      $('.delete').click(function(){
+        var currentForm = $(this).closest("form");
+        bootbox.confirm({
+            title: 'Confirmation',
+            message: $('#delete_text').html(),
+            buttons: {
+                'cancel': {
+                    label: 'No',
+                    className: 'btn green-meadow col-md-4 pull-left'
+                },
+                'confirm': {
+                    label: 'Yes',
+                    className: 'btn red col-md-4 pull-right'
+                }
+            },
+            callback: function(result) {
+                if (result) {
+                    currentForm.submit();
+                }
+            }
+        });
+       });
+
+    
+
+    });
+</script>
     </body>
 
 </html>
