@@ -35,6 +35,9 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         {!! Html::style('backend/assets/global/plugins/datatables/datatables.min.css') !!} 
         {!! Html::style('backend/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css') !!} 
+        {!! Html::style('backend/assets/global/plugins/bootstrap-toastr/toastr.min.css') !!} 
+      
+
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         {!! Html::style('backend/assets/global/plugins/morris/morris.css') !!} 
@@ -95,9 +98,9 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <!-- END FOOTER -->
         <!--[if lt IE 9]>
-<script src="backend/assets/global/plugins/respond.min.js"></script>
-<script src="backend/assets/global/plugins/excanvas.min.js"></script> 
-<![endif]-->
+        <script src="backend/assets/global/plugins/respond.min.js"></script>
+        <script src="backend/assets/global/plugins/excanvas.min.js"></script> 
+        <![endif]-->
         <!-- BEGIN CORE PLUGINS -->
         {!!Html::script('backend/assets/global/plugins/jquery.min.js')!!}
         {!!Html::script('backend/assets/global/plugins/bootstrap/js/bootstrap.min.js')!!}
@@ -120,6 +123,7 @@ License: You must have a valid license purchased only from themeforest(the above
         {!!Html::script('backend/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js')!!}
 
         {!!Html::script('backend/assets/global/plugins/bootbox/bootbox.min.js')!!}
+        {!!Html::script('backend/assets/global/plugins/bootstrap-toastr/toastr.min.js')!!}
 
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
@@ -130,6 +134,7 @@ License: You must have a valid license purchased only from themeforest(the above
         {!!Html::script('backend/assets/pages/scripts/table-datatables-managed.min.js')!!}
         {!!Html::script('backend/assets/pages/scripts/form-samples.min.js')!!}
         {!!Html::script('backend/assets/pages/scripts/ui-bootbox.min.js')!!}
+        {!!Html::script('backend/assets/pages/scripts/ui-toastr.min.js')!!}
           
         <!-- END PAGE LEVEL SCRIPTS -->
 
@@ -140,34 +145,62 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END THEME LAYOUT SCRIPTS -->
 
         <script>
-    $(document).ready(function() {
+
+        $(document).ready(function() {
+        <?php 
+           if(Session::has('message'))
+           { $message = Session::get('message'); ?>
+
+            var shortCutFunction = 'success';
+                var msg   = "{!! $message !!}";
+                var title = 'Notice Message';
+               
+                toastr.options = {
+                     "closeButton": true,
+                     "debug": false,
+                     "positionClass": "toast-top-right",
+                     "onclick": null,
+                     "showDuration": "1000",
+                     "hideDuration": "1000",
+                     "timeOut": "5000",
+                     "extendedTimeOut": "1000",
+                     "showEasing": "swing",
+                     "hideEasing": "linear",
+                     "showMethod": "fadeIn",
+                     "hideMethod": "fadeOut"
+                };
+
+                $("#toastrOptions").text("Command: toastr[" + shortCutFunction + "](\"" + msg + (title ? "\", \"" + title : '') + "\")\n\ntoastr.options = " + JSON.stringify(toastr.options, null, 2));
+
+                var $toast = toastr[shortCutFunction](msg, title); // Wire up an event handler to a button in the toast, if it exists
+        <?php } ?>
        
         $('#back').click(function(){
             window.history.back();
         });
 
-      $('.delete').click(function(){
-        var currentForm = $(this).closest("form");
-        bootbox.confirm({
-            title: 'Confirmation',
-            message: $('#delete_text').html(),
-            buttons: {
-                'cancel': {
-                    label: 'No',
-                    className: 'btn green-meadow col-md-4 pull-left'
+        $('.delete').click(function(){
+           var currentForm = $(this).closest("form");
+            bootbox.confirm({
+                title: 'Confirmation',
+                message: $('#delete_text').html(),
+                buttons: {
+                    'cancel': {
+                        label: 'No',
+                        className: 'btn green-meadow col-md-4 pull-left'
+                    },
+                    'confirm': {
+                        label: 'Yes',
+                        className: 'btn red col-md-4 pull-right'
+                    }
                 },
-                'confirm': {
-                    label: 'Yes',
-                    className: 'btn red col-md-4 pull-right'
+                callback: function(result) {
+                    if (result) {
+                        currentForm.submit();
+                    }
                 }
-            },
-            callback: function(result) {
-                if (result) {
-                    currentForm.submit();
-                }
-            }
+            });
         });
-       });
 
     
 

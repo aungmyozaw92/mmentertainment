@@ -25,7 +25,7 @@ class EloquentRoleRepository implements RoleRepository
     {
         $role               = new Role;
         $role->name         = $input['name'];
-        $role->role_desc    = $input['description'];
+        $role->description    = $input['description'];
         $role->save();
         return true;
     }
@@ -37,7 +37,7 @@ class EloquentRoleRepository implements RoleRepository
         if ($role->update($input)) {
 
           $role->name       = $input['name'];
-          $role->role_desc  = $input['description'];
+          $role->description  = $input['description'];
           $role->save();
 
           return true;

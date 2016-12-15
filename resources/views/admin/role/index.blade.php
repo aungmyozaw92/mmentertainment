@@ -4,31 +4,31 @@
  <div class="page-bar">
  	<ul class="page-breadcrumb">
  		<li>
- 			<a href="index.html">Home</a>
+ 			<a href="{{URL::to('admin/role')}}">Home</a>
  			<i class="fa fa-circle"></i>
  		</li>
  		<li>
- 			<span>Module</span>
+ 			<span>Role</span>
  		</li>
  	</ul>
 </div>
 <!-- END PAGE BAR -->
 <!-- BEGIN PAGE TITLE-->
- <h3 class="page-title"> Module Management
+ <h3 class="page-title"> Role Management
  </h3>
  <!-- END PAGE TITLE-->
 <div class="row">
 	<div class="col-md-12 ">
 		<!-- BEGIN Portlet PORTLET-->
-		<div class="portlet box green">
+		<div class="portlet box green-jungle">
 			<div class="portlet-title">
 				<div class="caption">
-					<i class="fa fa-gift"></i>Module <small>List</small>
+					<i class="fa fa-gift"></i>Role <small>List</small>
 				</div>
 				
 			</div>
 			<span class="hide" id="delete_text">
-		    	<h4>Are you sure you want to Delete this Module ?</h4>
+		    	<h4>Are you sure you want to Delete this Role ?</h4>
 		    	<h4>This action can't be undo. </h4>
 			</span>
 			<div class="portlet-body">
@@ -36,7 +36,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="btn-group">
-								<a class="btn green" href="{{URL::to('admin/module/create')}}"> Add New </a>
+								<a class="btn green-jungle" href="{{URL::to('admin/role/create')}}"> Add New </a>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -73,7 +73,7 @@
                     </thead>
                     <tbody>
                      <?php $i=0; ?>
-                    @foreach ($module as $row)
+                    @foreach ($role as $row)
                     <tr class="odd gradeX">
 						<td> {!! ++$i !!} </td>
                     	<td> {!! $row->name !!} </td>
@@ -82,9 +82,9 @@
 
                     	<td>
 
-                    		<a href="{{ URL::to('admin/module/'.$row->id.'/edit/') }}" class="btn blue tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil icon-white"></i></a>
+                    		<a href="{{ URL::to('admin/role/'.$row->id.'/edit/') }}" class="btn blue tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil icon-white"></i></a>
 
-                    		{{ Form::open(array('method' => 'DELETE', 'route' => array('admin.module.destroy', $row->id), 'style'=>'display: inline')) }}
+                    		{{ Form::open(array('method' => 'DELETE', 'route' => array('admin.role.destroy', $row->id), 'style'=>'display: inline')) }}
                     		<button type="button" class="btn red tooltips delete" value="x" data-placement="top" data-original-title="Delete"><i class="fa fa-trash-o icon-white"></i></button>
                     		{{ Form::close() }}
                     	</td>

@@ -33,6 +33,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth'], function ()
 		
 		Route::resource('admin/module','ModuleController');
 		Route::resource('admin/role','RoleController');
+		Route::resource('admin/user','UserController');
 
 		
    });
