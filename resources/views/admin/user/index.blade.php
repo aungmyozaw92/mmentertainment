@@ -86,12 +86,13 @@
                         <td>{!! date('d-m-Y', strtotime($row->updated_at)) !!}</td>
 
                     	<td>
+						<a href="{{ URL::to('admin/user/'.$row->id.'/edit/') }}" class="btn blue tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil icon-white"></i></a>
 
-                    		<a href="{{ URL::to('admin/user/'.$row->id.'/edit/') }}" class="btn blue tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil icon-white"></i></a>
-
+                    	@if($row->id != 1)
                     		{{ Form::open(array('method' => 'DELETE', 'route' => array('admin.user.destroy', $row->id), 'style'=>'display: inline')) }}
                     		<button type="button" class="btn red tooltips delete" value="x" data-placement="top" data-original-title="Delete"><i class="fa fa-trash-o icon-white"></i></button>
-                    		{{ Form::close() }}
+                    	    {{ Form::close() }}
+                    	@endif
                     	</td>
                     </tr>
                      @endforeach

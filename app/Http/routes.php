@@ -35,5 +35,13 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth'], function ()
 		Route::resource('admin/role','RoleController');
 		Route::resource('admin/user','UserController');
 
+		Route::resource('admin/permission','PermissionController');
+	    Route::get('admin/permission/delete/{id}', 'PermissionController@delete');
+		Route::post('admin/permission/add_sub_permission','PermissionController@add_sub_permission');
+		Route::post('admin/permission/getPermissionByRole/{id}/true','PermissionController@getPermissionByRole');
+
+		Route::resource('admin/category','CategoryController');
+		Route::resource('admin/subcategory','SubCategoryController');
+
 		
    });

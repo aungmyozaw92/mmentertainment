@@ -44,6 +44,20 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Admin\User\UserRepository::class,
             \App\Repositories\Admin\User\EloquentUserRepository::class
         );
+        $this->app->bind(
+            \App\Repositories\Admin\Permission\PermissionRepository::class,
+            \App\Repositories\Admin\Permission\EloquentPermissionRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Admin\Category\CategoryRepository::class,
+            \App\Repositories\Admin\Category\EloquentCategoryRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Admin\SubCategory\SubCategoryRepository::class,
+            \App\Repositories\Admin\SubCategory\EloquentSubCategoryRepository::class
+        );
       
     }
 }

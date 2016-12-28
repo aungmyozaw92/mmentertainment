@@ -25,7 +25,7 @@
         <div class="portlet box red-mint">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-user"></i>Add New User
+                    <i class="icon-user"></i>Add New User
                 </div>
                
             </div>
@@ -42,49 +42,93 @@
                                 @endforeach 
                             </div>
                         </div>
-                        <div class="form-group @if ($errors->has('email'))has-error @endif">
-                            {!!Form::label('name', 'Email:',['class' => 'col-md-3 control-label']) !!}
-                            <div class="col-md-4">
-                                {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Enter Email' ])!!}
-                                @foreach($errors->get('email') as $error)
-                                    <span class="help-block"> {{ $error }}</span>
-                                @endforeach 
-                            </div>
-                            
-                        </div>
+                        
 
                         <div class="form-group @if ($errors->has('username'))has-error @endif">
                             {!!Form::label('name', 'Username:',['class' => 'col-md-3 control-label']) !!}
                             <div class="col-md-3">
-                                {!! Form::text('username', null, ['class' => 'form-control', 'placeholder' => 'Enter Username' ])!!}
-                                @foreach($errors->get('username') as $error)
-                                   <span class="help-block"> {{ $error }}</span>
-                                @endforeach
-                            </div>
-                             
+                                <div class="input-inline input-large">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                        {!! Form::text('username', null, ['class' => 'form-control', 'placeholder' => 'Enter Username' ])!!}
+                                        @foreach($errors->get('username') as $error)
+                                           <span class="help-block"> {{ $error }}</span>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                
+                            </div> 
+                        </div>
+
+                        <div class="form-group @if ($errors->has('email'))has-error @endif">
+                            {!!Form::label('name', 'Email:',['class' => 'col-md-3 control-label']) !!}
+                            <div class="col-md-5">
+                                <div class="input-inline input-large">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-envelope"></i>
+                                        </span>
+                                        {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Enter Email' ])!!}
+                                        @foreach($errors->get('email') as $error)
+                                            <span class="help-block"> {{ $error }}</span>
+                                        @endforeach 
+                                    </div>
+                                </div>
+                                
+                            </div> 
                         </div>
     
-                         <div class="form-group @if ($errors->has('password'))has-error @endif">
+                        <div class="form-group @if ($errors->has('password'))has-error @endif">
                             {!!Form::label('name', 'Password:',['class' => 'col-md-3 control-label']) !!}
                             <div class="col-md-3">
-                                <input type="password" placeholder="Password" name="password" class="form-control"/>
-                                @foreach($errors->get('password') as $error)
-                                    <span class="help-block"> {{ $error }}</span>
-                                @endforeach 
+                                <div class="input-inline input-large">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-lock"></i>
+                                        </span>
+                                        <input type="password" placeholder="Password" name="password" class="form-control"/>
+                                        @foreach($errors->get('password') as $error)
+                                            <span class="help-block"> {{ $error }}</span>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                 
                             </div>
                             
                         </div>
-                         <div class="form-group @if ($errors->has('passconf'))has-error @endif">
+                        <div class="form-group @if ($errors->has('passconf'))has-error @endif">
                             {!!Form::label('name', 'Comfirmation Password:',['class' => 'col-md-3 control-label']) !!}
                             <div class="col-md-3">
-                                <input type="password" placeholder="must same above password field" name="passconf" class="form-control"/>
-                                @foreach($errors->get('passconf') as $error)
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-lock"></i>
+                                    </span>
+                                    <input type="password" placeholder="must same above password field" name="passconf" class="form-control"/>
+                                    @foreach($errors->get('passconf') as $error)
+                                       <span class="help-block"> {{ $error }}</span>
+                                    @endforeach 
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+
+                        <div class="form-group @if ($errors->has('role_id'))has-error @endif" >
+                            <label class="control-label col-md-3">Select</label>
+                            <div class="col-md-3">
+                                <select name="role_id" class="form-control">
+                                    <option value="">Select Role</option>
+                                    @foreach ($roles as $role)
+                                    <option value="{!! $role->id !!}">{!! $role->name !!}</option>
+                                    @endforeach
+                                </select>
+                                @foreach($errors->get('role_id') as $error)
                                    <span class="help-block"> {{ $error }}</span>
                                 @endforeach 
                             </div>
-                            
                         </div>
-                        
                         
                     </div>
                     <div class="form-actions fluid">

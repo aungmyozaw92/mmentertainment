@@ -4,31 +4,31 @@
  <div class="page-bar">
  	<ul class="page-breadcrumb">
  		<li>
- 			<a href="{{URL::to('admin/role')}}">Home</a>
+ 			<a href="{{URL::to('admin/category')}}">Home</a>
  			<i class="fa fa-circle"></i>
  		</li>
  		<li>
- 			<span>Role</span>
+ 			<span>Category</span>
  		</li>
  	</ul>
 </div>
 <!-- END PAGE BAR -->
 <!-- BEGIN PAGE TITLE-->
- <h3 class="page-title"> Role Management
+ <h3 class="page-title"> Category Management
  </h3>
  <!-- END PAGE TITLE-->
 <div class="row">
 	<div class="col-md-12 ">
 		<!-- BEGIN Portlet PORTLET-->
-		<div class="portlet box green-jungle">
+		<div class="portlet box yellow-casablanca">
 			<div class="portlet-title">
 				<div class="caption">
-					<i class="fa fa-gift"></i>Role <small>List</small>
+					<i class="icon-direction"></i>Category <small>List</small>
 				</div>
 				
 			</div>
 			<span class="hide" id="delete_text">
-		    	<h4>Are you sure you want to Delete this Role ?</h4>
+		    	<h4>Are you sure you want to Delete this Category ?</h4>
 		    	<h4>This action can't be undo. </h4>
 			</span>
 			<div class="portlet-body">
@@ -36,7 +36,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="btn-group">
-								<a class="btn green-jungle" href="{{URL::to('admin/role/create')}}"> Add New </a>
+								<a class="btn yellow-casablanca" href="{{URL::to('admin/category/create')}}"> Add New </a>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -67,28 +67,24 @@
                         <tr>
                             <th> # </th>
                             <th> Name </th>
-                            <th> Description </th>
+                            <th> MM Name </th>
                      		<th> Action </th>
                         </tr>
                     </thead>
                     <tbody>
                      <?php $i=0; ?>
-                    @foreach ($role as $row)
+                    @foreach ($category as $row)
                     <tr class="odd gradeX">
 						<td> {!! ++$i !!} </td>
                     	<td> {!! $row->name !!} </td>
 
-                    	<td> {!! $row->description !!} </td>
+                    	<td> {!! $row->mm_name !!} </td>
 
                     	<td>
+                    	
+                    		<a href="{{ URL::to('admin/category/'.$row->id.'/edit/') }}" class="btn blue tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil icon-white"></i></a>
 
-                    	   <a href="{{ URL::to('admin/role/'.$row->id) }}"  class="btn green tooltips"  data-placement="top" data-original-title="Detail">
-                                <i class="fa fa-eye icon-white"></i>
-                            </a>
-
-                    		<a href="{{ URL::to('admin/role/'.$row->id.'/edit/') }}" class="btn blue tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil icon-white"></i></a>
-
-                    		{{ Form::open(array('method' => 'DELETE', 'route' => array('admin.role.destroy', $row->id), 'style'=>'display: inline')) }}
+                    		{{ Form::open(array('method' => 'DELETE', 'route' => array('admin.category.destroy', $row->id), 'style'=>'display: inline')) }}
                     		<button type="button" class="btn red tooltips delete" value="x" data-placement="top" data-original-title="Delete"><i class="fa fa-trash-o icon-white"></i></button>
                     		{{ Form::close() }}
                     	</td>

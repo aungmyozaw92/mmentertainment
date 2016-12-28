@@ -25,7 +25,7 @@
 
         </li>
 
-        <li class="nav-item <?php echo(Request::segment(2)== 'user' )?'active':''; ?> ">
+        <li class="nav-item <?php echo(Request::segment(2)== 'user'||Request::segment(2)== 'module'||Request::segment(2)== 'role' )?'active':''; ?> ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-user"></i>
                 <span class="title">User</span>
@@ -45,6 +45,51 @@
                 <li class="nav-item  ">
                     <a href="{{ Url::to('admin/user') }}" class="nav-link ">
                         <span class="title">User List</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item <?php echo(Request::segment(2)== 'category' )?'active':''; ?> ">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="icon-direction"></i>
+                <span class="title">Category</span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  ">
+                    <a href="{{ Url::to('admin/category') }}" class="nav-link ">
+                        <span class="title">Category List</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item <?php echo(Request::segment(2)== 'subcategory' )?'active':''; ?> ">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="icon-directions"></i>
+                <span class="title">Sub Category</span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  ">
+                    <a href="{{ Url::to('admin/subcategory') }}" class="nav-link ">
+                        <span class="title">Sub Category List</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item <?php echo(Request::segment(2)== 'post' )?'active':''; ?> ">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="icon-puzzle"></i>
+                <span class="title">Post</span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  ">
+                    <a href="{{ Url::to('admin/post') }}" class="nav-link ">
+                        <span class="title">Post List</span>
                     </a>
                 </li>
             </ul>

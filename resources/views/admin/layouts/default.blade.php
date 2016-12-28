@@ -52,6 +52,8 @@ License: You must have a valid license purchased only from themeforest(the above
         {!! Html::style('backend/assets/layouts/layout/css/layout.min.css') !!} 
         {!! Html::style('backend/assets/layouts/layout/css/themes/default.min.css') !!} 
         {!! Html::style('backend/assets/layouts/layout/css/custom.min.css') !!} 
+
+        {!!Html::script('backend/assets/global/plugins/jquery.min.js')!!}
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="{{URL::asset('backend/assets/layouts/layout/img/logo.png')}}" /> </head>
     <!-- END HEAD -->
@@ -102,7 +104,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="backend/assets/global/plugins/excanvas.min.js"></script> 
         <![endif]-->
         <!-- BEGIN CORE PLUGINS -->
-        {!!Html::script('backend/assets/global/plugins/jquery.min.js')!!}
+        
         {!!Html::script('backend/assets/global/plugins/bootstrap/js/bootstrap.min.js')!!}
         {!!Html::script('backend/assets/global/plugins/js.cookie.min.js')!!}
         {!!Html::script('backend/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js')!!}

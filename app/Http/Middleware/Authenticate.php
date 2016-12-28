@@ -5,6 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
+use App\User;
+use Illuminate\Support\Facades\Session;
+
 class Authenticate
 {
     /**
@@ -21,8 +24,14 @@ class Authenticate
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('login');
+                return redirect()->guest('admin');
             }
+        }
+
+        if(Auth::check()) {
+            User::initRolePerm(); 
+        } else{
+            Session::put('rolePermObj',array());
         }
 
         return $next($request);
